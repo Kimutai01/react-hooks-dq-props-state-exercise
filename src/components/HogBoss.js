@@ -5,9 +5,20 @@ import offspring from "../data.js";
 
 function HogBoss() {
   const [eyeColor, setEyeColor] = useState("blue");
+  const [weight, setWeight] = useState(2.54);
 
   function handleChangeEyeColor(e) {
     setEyeColor(e.target.value);
+  }
+  function handleChangeWeight(e) {
+    // alert(1);
+    console.log(e.target.name);
+    if (e.target.name === "+") {
+      setWeight((weight) => weight + 1);
+    }
+    if (e.target.name === "-") {
+      setWeight((weight) => weight - 1);
+    }
   }
 
   return (
@@ -34,7 +45,7 @@ function HogBoss() {
       />
       Glowing<br></br>
       <h2>Name: Blaster Boss</h2>
-      <h3>Weight: 2.54 Tons</h3>
+      <h3>Weight: {weight} Tons</h3>
       <h3>Eye Color: {eyeColor}</h3>
       <div id="boss-domicile">
         <img id="boss-blaster" src={Boss} alt="" />
@@ -46,7 +57,8 @@ function HogBoss() {
             name={baby.name}
             eyeColor={eyeColor}
             hobby={baby.hobby}
-            src={"${eyecolor}Baby"}
+            weight={weight}
+            handleWeight={handleChangeWeight}
           />
         ))}
       </ul>
